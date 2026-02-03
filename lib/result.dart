@@ -61,7 +61,7 @@ class ResultScreen extends StatelessWidget {
                         children: [
                           Text(
                             message,
-                            style: const TextStyle(fontSize: 23, fontWeight: FontWeight.w400, color: Colors.white),
+                            style: const TextStyle(fontSize: 18, fontWeight: FontWeight.w400, color: Colors.white),
                             maxLines: 2,
                             overflow: TextOverflow.ellipsis,
                           ),

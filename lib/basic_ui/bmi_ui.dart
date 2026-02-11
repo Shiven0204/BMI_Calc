@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:bmi_cal/logic.dart';
-import 'package:bmi_cal/result.dart';
+import 'package:bmi_cal/basic_ui/logic.dart';
+import 'package:bmi_cal/basic_ui/result.dart';
 
 enum Gender { male, female }
 
@@ -21,12 +21,12 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color(0xFF111328),
+      backgroundColor: Color(0xFF000812),
       appBar: AppBar(
         title: const Text("BMI Calculator", style: TextStyle(color: Colors.white),
         ),
         centerTitle: true,
-        backgroundColor: const Color(0xFF0A0E21),
+        backgroundColor: const Color(0xFF2E303C),
         elevation: 0,
       ),
       body: Center(
@@ -48,7 +48,7 @@ class _HomePageState extends State<HomePage> {
                             },
                             child: Card(
                               color: selectedGender == Gender.male
-                                  ? Color(0xFFE91E63) : Color(0xFF111328),
+                                  ? Color(0xFFDFBD44) : Color(0xFF2E303C),
                               child: Column(
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
@@ -74,8 +74,8 @@ class _HomePageState extends State<HomePage> {
                             },
                             child: Card(
                               color: selectedGender == Gender.female
-                                  ? const Color(0xFFE91E63)
-                                  : const Color(0xFF1D1E33),
+                                  ? const Color(0xFFDFBD44)
+                                  : const Color(0xFF2E303C),
                               child: Column(
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
@@ -97,7 +97,7 @@ class _HomePageState extends State<HomePage> {
                   ),
                   Expanded(
                     child: Card(
-                      color: const Color(0xFF1D1E33),
+                      color: Color(0xFF2E303C),
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
@@ -122,7 +122,7 @@ class _HomePageState extends State<HomePage> {
                             min: 100,
                             max: 220,
                             value: height.toDouble(),
-                            activeColor: Colors.pink,
+                            activeColor: Color(0xFFDFBD44),
                             inactiveColor: Colors.grey,
                             onChanged: (value) {
                               setState(() {
@@ -139,7 +139,7 @@ class _HomePageState extends State<HomePage> {
                       children: [
                         Expanded(
                           child: Card(
-                            color: const Color(0xFF1D1E33),
+                            color: const Color(0xFF2E303C),
                             child: Column(
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
@@ -179,7 +179,7 @@ class _HomePageState extends State<HomePage> {
                         ),
                         Expanded(
                           child: Card(
-                            color: const Color(0xFF1D1E33),
+                            color: const Color(0xFF2E303C),
                             child: Column(
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
@@ -243,9 +243,12 @@ class _HomePageState extends State<HomePage> {
                       );
                     },
                     child: Container(
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(15),
+                        color: Color(0xFFDFBD44),
+                      ),
                       width: double.infinity,
                       height: 60,
-                      color: Colors.pink,
                       child: Center(
                         child: Text(
                           "Calculate",

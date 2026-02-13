@@ -1,5 +1,7 @@
+// import 'package:bmi_cal/basic_ui/bmi_ui.dart';
+// import 'package:bmi_cal/home.dart';
 import 'package:flutter/material.dart';
-import 'package:bmi_cal/basic_ui/bmi_ui.dart';
+import 'package:bmi_cal/advance_ui/adv_ui.dart';
 
 // Saffron: #DFBD44
 // Jet: #2E303C
@@ -9,7 +11,7 @@ import 'package:bmi_cal/basic_ui/bmi_ui.dart';
 void main() {
   runApp(
       MaterialApp(
-        home: HomePage(),
+        home: AdvanceUI(),
       )
   );
 }

@@ -4,14 +4,14 @@ import 'package:bmi_cal/basic_ui/result.dart';
 
 enum Gender { male, female }
 
-class HomePage extends StatefulWidget {
-  const HomePage({super.key});
+class BasicUI extends StatefulWidget {
+  const BasicUI({super.key});
 
   @override
-  State<HomePage> createState() => _HomePageState();
+  State<BasicUI> createState() => _BasicUIState();
 }
 
-class _HomePageState extends State<HomePage> {
+class _BasicUIState extends State<BasicUI> {
   int height = 170;
   int weight = 60;
   int age = 20;
@@ -39,6 +39,7 @@ class _HomePageState extends State<HomePage> {
                   Expanded(
                     child: Row(
                       children: [
+                        //Male selection buton
                         Expanded(
                           child: GestureDetector(
                             onTap: () {
@@ -65,6 +66,7 @@ class _HomePageState extends State<HomePage> {
                             ),
                           ),
                         ),
+                        //Female selection buton
                         Expanded(
                           child: GestureDetector(
                             onTap: () {
@@ -95,6 +97,7 @@ class _HomePageState extends State<HomePage> {
                       ],
                     ),
                   ),
+                  //Height selection
                   Expanded(
                     child: Card(
                       color: Color(0xFF2E303C),
@@ -134,6 +137,7 @@ class _HomePageState extends State<HomePage> {
                       ),
                     ),
                   ),
+                  //Weight selection
                   Expanded(
                     child: Row(
                       children: [
@@ -177,6 +181,7 @@ class _HomePageState extends State<HomePage> {
                             ),
                           ),
                         ),
+                        //Age selection
                         Expanded(
                           child: Card(
                             color: const Color(0xFF2E303C),
@@ -220,6 +225,7 @@ class _HomePageState extends State<HomePage> {
                       ],
                     ),
                   ),
+                  //Calculate Button
                   GestureDetector(
                     onTap: () {
                       BmiCalculator bmi = BmiCalculator(
@@ -242,6 +248,7 @@ class _HomePageState extends State<HomePage> {
                         ),
                       );
                     },
+                    //Button
                     child: Container(
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(15),

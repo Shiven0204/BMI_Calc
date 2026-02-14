@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-// import 'package:bmi_cal/basic_ui/logic.dart';
-// import 'package:bmi_cal/basic_ui/result.dart';
+import 'package:bmi_cal/basic_ui/logic.dart';
+import 'package:bmi_cal/basic_ui/result.dart';
 import 'package:simple_ruler_picker/simple_ruler_picker.dart';
 
 
@@ -17,9 +17,9 @@ class AdvanceUI extends StatefulWidget {
 }
 
 class _AdvanceUIState extends State<AdvanceUI> {
-  int height = 160;
+  int height = 90;
   int weight = 60;
-  int age = 20;
+  int age = 32;
   Gender? selectedGender;
 
 
@@ -44,6 +44,7 @@ class _AdvanceUIState extends State<AdvanceUI> {
               children: [
                 Row(
                   children: [
+                    // Male card
                     Expanded(
                       child: GestureDetector(
                         onTap: () {
@@ -73,6 +74,7 @@ class _AdvanceUIState extends State<AdvanceUI> {
                         ),
                       ),
                     ),
+                    // Female card
                     Expanded(
                       child: GestureDetector(
                         onTap: () {
@@ -104,6 +106,7 @@ class _AdvanceUIState extends State<AdvanceUI> {
                     )
                   ],
                 ),
+                // Age selection
                 Expanded(
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
@@ -112,39 +115,51 @@ class _AdvanceUIState extends State<AdvanceUI> {
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
+                            //Age card
                             Card(
                               color: const Color(0xFF2E303C),
                               child: Padding(
-                                padding: const EdgeInsets.all(10.0),
+                                padding: const EdgeInsets.all(20.0),
                                 child: Column(
+                                  mainAxisAlignment: MainAxisAlignment.center,
                                   children: [
-                                    Text('Age', style: TextStyle(fontSize: 20, color: Colors.white),),
-                                    Text('$age', style: TextStyle(fontSize: 43, fontWeight: FontWeight.bold, color: Colors.white),),
-                                    SimpleRulerPicker(
-                                      minValue: 50,
-                                      maxValue: 210,
-                                      initialValue: 50,
-                                      onValueChanged: (value) {
-                                        setState(() {
-                                          age = value.toInt();
-                                        });
-                                      },
-                                      scaleLabelSize: 0,
-                                      scaleBottomPadding: 0,
-                                      scaleItemWidth: 12,
-                                      longLineHeight: 25,
-                                      shortLineHeight: 15,
-                                      lineColor: Color(0xFFF5CE0A),
-                                      selectedColor: Colors.blue,
-                                      labelColor: Colors.black,
-                                      lineStroke: 3,
-                                      height: 130,
+                                    Row(
+                                      children: [
+                                        Column(
+                                            children: [
+                                              Text('Age', style: TextStyle(fontSize: 20, color: Colors.white)),
+                                              Text('$age', style: TextStyle(fontSize: 43, fontWeight: FontWeight.bold, color: Colors.white)),
+                                            ]
+                                        ),
+                                        Expanded(
+                                          child: SimpleRulerPicker(
+                                            minValue: 0,
+                                            maxValue: 90,
+                                            initialValue: 32,
+                                            onValueChanged: (value) {
+                                              setState(() {
+                                                age = value.toInt();
+                                              });
+                                            },
+                                            scaleLabelSize: 0,
+                                            scaleBottomPadding: 0,
+                                            scaleItemWidth: 12,
+                                            longLineHeight: 25,
+                                            shortLineHeight: 15,
+                                            lineColor: Color(0xFFF5CE0A),
+                                            selectedColor: Colors.blue,
+                                            labelColor: Colors.black,
+                                            lineStroke: 3,
+                                            height: 130,
+                                          ),
+                                        ),
+                                      ],
                                     ),
-                                    // SizedBox(height: 20)
                                   ],
                                 ),
                               ),
                             ),
+                            // Weight card
                             Card(
                               color: const Color(0xFF2E303C),
                               child: Padding(
@@ -163,8 +178,8 @@ class _AdvanceUIState extends State<AdvanceUI> {
                                         Expanded(
                                           child: SimpleRulerPicker(
                                             minValue: 50,
-                                            maxValue: 210,
-                                            initialValue: 50,
+                                            maxValue: 110,
+                                            initialValue: 60,
                                             onValueChanged: (value) {
                                               setState(() {
                                                 weight = value.toInt();
@@ -184,15 +199,14 @@ class _AdvanceUIState extends State<AdvanceUI> {
                                         ),
                                       ],
                                     ),
-                                    // SizedBox(height: 20)
                                   ],
                                 ),
                               ),
                             ),
-                            // SizedBox(height: 50)
                           ],
                         ),
                       ),
+                      // Height selection
                       Expanded(
                         child: Card(
                           color: Color(0xFF2E303C),
@@ -216,13 +230,11 @@ class _AdvanceUIState extends State<AdvanceUI> {
                                         color: Colors.white,
                                       ),
                                     ),
-                                    // Text(" cm", style: TextStyle(color: Colors.grey)),
-
                                     Expanded(
                                       child: SimpleRulerPicker(
-                                        minValue: 50,
+                                        minValue: 60,
                                         maxValue: 210,
-                                        initialValue: 50,
+                                        initialValue: 70,
                                         onValueChanged: (value) {
                                           setState(() {
                                             height = value.toInt();
@@ -250,10 +262,53 @@ class _AdvanceUIState extends State<AdvanceUI> {
                       ),
                     ],
                   ),
-                )
+                ),
+                // Calculate button
+                GestureDetector(
+                  onTap: () {
+                    BmiCalculator bmi = BmiCalculator(
+                      height: height,
+                      weight: weight,
+                    );
+
+                    double result = bmi.calculateBMI();
+                    String category = bmi.getResult(result);
+                    String message = bmi.getMessage(category);
+
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => ResultScreen(
+                          bmiValue: result,
+                          bmiCategory: category,
+                          message: message,
+                        ),
+                      ),
+                    );
+                  },
+                  //Button
+                  child: Container(
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(15),
+                      color: Color(0xFFDFBD44),
+                    ),
+                    width: double.infinity,
+                    height: 60,
+                    child: Center(
+                      child: Text(
+                        "Calculate",
+                        style: TextStyle(
+                          fontSize: 22,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.white,
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
               ],
             ),
-          )
+          ),
       ),
     );
   }

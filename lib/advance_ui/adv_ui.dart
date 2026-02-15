@@ -296,6 +296,7 @@ class _AdvanceUIState extends State<AdvanceUI> {
                           height: height,
                           weight: weight,
                           currentTime: currentTime,
+                          gender: selectedGender == Gender.male ? "Male" : "Female",
                         ),
                       ),
                     );

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:syncfusion_flutter_gauges/gauges.dart';
 
 class AdvUiResult extends StatelessWidget {
   final double bmiValue;
@@ -8,6 +9,8 @@ class AdvUiResult extends StatelessWidget {
   final int weight;
   final int age;
   final String currentTime;
+  final String gender;
+
 
 
   const AdvUiResult({
@@ -19,6 +22,7 @@ class AdvUiResult extends StatelessWidget {
     required this.weight,
     required this.age,
     required this.currentTime,
+    required this.gender,
   });
 
   Color getStatusColor() {
@@ -62,12 +66,94 @@ class AdvUiResult extends StatelessWidget {
                                     fontWeight: FontWeight.bold,
                                     color: Colors.white),
                               ),
+                              SizedBox(height: 15,),
                               Text(
-                                "${weight.toInt()}kg | ${height
+                                "$gender | ${weight.toInt()}kg | ${height
                                     .toInt()}cm | ${age}yr",
                                 style: TextStyle(fontSize: 18,
                                     fontWeight: FontWeight.bold,
                                     color: Colors.white),
+                              ),
+                              SizedBox(height: 15,),
+                              SizedBox(
+                                height: 180,
+                                width: 200,
+                                child: SfRadialGauge(
+                                  axes: [
+                                    RadialAxis(
+                                      minimum: 10,
+                                      maximum: 40,
+                                      startAngle: 180,
+                                      endAngle: 0,
+                                      showTicks: false,
+                                      showLabels: false,
+                                      axisLineStyle: const AxisLineStyle(
+                                        thickness: 0.2,
+                                        thicknessUnit: GaugeSizeUnit.factor,
+                                      ),
+                                      ranges: [
+                                        GaugeRange(
+                                          startValue: 10,
+                                          endValue: 18.5,
+                                          color: Colors.red,
+                                          startWidth: 0.2,
+                                          endWidth: 0.2,
+                                          sizeUnit: GaugeSizeUnit.factor,
+                                        ),
+                                        GaugeRange(
+                                          startValue: 18.5,
+                                          endValue: 25,
+                                          color: Colors.orange,
+                                          startWidth: 0.2,
+                                          endWidth: 0.2,
+                                          sizeUnit: GaugeSizeUnit.factor,
+                                        ),
+                                        GaugeRange(
+                                          startValue: 25,
+                                          endValue: 30,
+                                          color: Colors.yellow,
+                                          startWidth: 0.2,
+                                          endWidth: 0.2,
+                                          sizeUnit: GaugeSizeUnit.factor,
+                                        ),
+                                        GaugeRange(
+                                          startValue: 30,
+                                          endValue: 40,
+                                          color: Colors.green,
+                                          startWidth: 0.2,
+                                          endWidth: 0.2,
+                                          sizeUnit: GaugeSizeUnit.factor,
+                                        ),
+                                      ],
+                                      pointers: [
+                                        NeedlePointer(
+                                          value: bmiValue,
+                                          needleLength: 0.7,
+                                          needleColor: Colors.black,
+                                          knobStyle: const KnobStyle(color: Colors.black),
+                                        )
+                                      ],
+                                      annotations: const [
+                                        GaugeAnnotation(
+                                          widget: Text(
+                                            "Min",
+                                            style: TextStyle(fontSize: 12, fontWeight: FontWeight.w500, color: Colors.white),
+                                          ),
+                                          angle: 180,
+                                          positionFactor: 1.15, // move outside arc
+                                        ),
+                                        GaugeAnnotation(
+                                          widget: Text(
+                                            "Max",
+                                            style: TextStyle(fontSize: 12, fontWeight: FontWeight.w500, color: Colors.white),
+                                          ),
+                                          angle: 0,
+                                          positionFactor: 1.15, // move outside arc
+                                        ),
+                                      ],
+                                    )
+                                  ],
+                                ),
                               ),
                               SizedBox(height: 15,),
                               Text(

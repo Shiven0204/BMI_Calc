@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 
-class ResultScreen extends StatelessWidget {
+class BasicUiResult extends StatelessWidget {
   final double bmiValue;
   final String bmiCategory;
   final String message;
 
-  const ResultScreen({
+  const BasicUiResult({
     super.key,
     required this.bmiValue,
     required this.bmiCategory,

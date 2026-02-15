@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:bmi_cal/basic_ui/logic.dart';
-import 'package:bmi_cal/basic_ui/result.dart';
+import 'package:bmi_cal/logic.dart';
+import 'package:bmi_cal/basic_ui/basicui_result.dart';
 
 enum Gender { male, female }
 
@@ -240,7 +240,7 @@ class _BasicUIState extends State<BasicUI> {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                          builder: (context) => ResultScreen(
+                          builder: (context) => BasicUiResult(
                             bmiValue: result,
                             bmiCategory: category,
                             message: message,

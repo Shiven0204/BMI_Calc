@@ -1,7 +1,9 @@
+import 'package:bmi_cal/advance_ui/advui_result.dart';
 import 'package:flutter/material.dart';
-import 'package:bmi_cal/basic_ui/logic.dart';
-import 'package:bmi_cal/basic_ui/result.dart';
+import 'package:bmi_cal/logic.dart';
 import 'package:simple_ruler_picker/simple_ruler_picker.dart';
+import 'package:intl/intl.dart';
+
 
 
 
@@ -17,10 +19,11 @@ class AdvanceUI extends StatefulWidget {
 }
 
 class _AdvanceUIState extends State<AdvanceUI> {
-  int height = 90;
+  int height = 110;
   int weight = 60;
   int age = 32;
   Gender? selectedGender;
+  String currentTime = DateFormat("MMM d, yyyy | h:mm a").format(DateTime.now());
 
 
   @override
@@ -42,6 +45,13 @@ class _AdvanceUIState extends State<AdvanceUI> {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
+                Text(
+                  "Body mass index BMI is a measure of body fat based on height and weight that applies to adult men and women.",
+                  style: TextStyle(
+                    fontSize: 20,
+                    color: Color(0xFFF5CE0A),
+                  ),
+                ),
                 Row(
                   children: [
                     // Male card
@@ -230,30 +240,30 @@ class _AdvanceUIState extends State<AdvanceUI> {
                                         color: Colors.white,
                                       ),
                                     ),
-                                    Expanded(
-                                      child: SimpleRulerPicker(
-                                        minValue: 60,
-                                        maxValue: 210,
-                                        initialValue: 70,
-                                        onValueChanged: (value) {
-                                          setState(() {
-                                            height = value.toInt();
-                                          });
-                                        },
-                                        scaleLabelSize: 0,
-                                        scaleBottomPadding: 0,
-                                        scaleItemWidth: 12,
-                                        longLineHeight: 25,
-                                        shortLineHeight: 15,
-                                        lineColor: Color(0xFFF5CE0A),
-                                        selectedColor: Colors.blue,
-                                        labelColor: Colors.black,
-                                        lineStroke: 3,
-                                        height: 130,
-                                        axis: Axis.vertical,
-                                      ),
-                                    ),
                                   ],
+                                ),
+                                Expanded(
+                                  child: SimpleRulerPicker(
+                                    minValue: 60,
+                                    maxValue: 210,
+                                    initialValue: 110,
+                                    onValueChanged: (value) {
+                                      setState(() {
+                                        height = value.toInt();
+                                      });
+                                    },
+                                    scaleLabelSize: 0,
+                                    scaleBottomPadding: -30,
+                                    scaleItemWidth: 12,
+                                    longLineHeight: 35,
+                                    shortLineHeight: 20,
+                                    lineColor: Color(0xFFF5CE0A),
+                                    selectedColor: Colors.blue,
+                                    labelColor: Colors.black,
+                                    lineStroke: 3,
+                                    height: 130,
+                                    axis: Axis.vertical,
+                                  ),
                                 ),
                               ],
                             ),
@@ -278,10 +288,14 @@ class _AdvanceUIState extends State<AdvanceUI> {
                     Navigator.push(
                       context,
                       MaterialPageRoute(
-                        builder: (context) => ResultScreen(
+                        builder: (context) => AdvUiResult(
                           bmiValue: result,
                           bmiCategory: category,
                           message: message,
+                          age: age,
+                          height: height,
+                          weight: weight,
+                          currentTime: currentTime,
                         ),
                       ),
                     );

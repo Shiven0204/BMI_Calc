@@ -52,6 +52,7 @@ class _AdvanceUIState extends State<AdvanceUI> {
                     color: Color(0xFFF5CE0A),
                   ),
                 ),
+                SizedBox(height: 25),
                 Row(
                   children: [
                     // Male card
@@ -116,6 +117,7 @@ class _AdvanceUIState extends State<AdvanceUI> {
                     )
                   ],
                 ),
+                SizedBox(height: 20,),
                 // Age selection
                 Expanded(
                   child: Row(
@@ -169,6 +171,7 @@ class _AdvanceUIState extends State<AdvanceUI> {
                                 ),
                               ),
                             ),
+                            SizedBox(height: 15,),
                             // Weight card
                             Card(
                               color: const Color(0xFF2E303C),
@@ -273,6 +276,7 @@ class _AdvanceUIState extends State<AdvanceUI> {
                     ],
                   ),
                 ),
+                SizedBox(height: 25,),
                 // Calculate button
                 GestureDetector(
                   onTap: () {

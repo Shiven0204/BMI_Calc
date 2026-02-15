@@ -1,5 +1,6 @@
-// import 'package:bmi_cal/basic_ui/bmi_ui.dart';
 import 'package:flutter/material.dart';
+import 'basic_ui/basic_ui.dart';
+import 'advance_ui/adv_ui.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -9,33 +10,37 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  int currentPageIndex = 0;
+  int currentIndex = 0;
+
+  final List<Widget> pages = [
+    BasicUI(),
+    AdvanceUI(),
+  ];
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color(0xFF000812),
-      bottomNavigationBar: NavigationBar(
-        onDestinationSelected: (int index) {
+      body: pages[currentIndex],
+
+
+      bottomNavigationBar: BottomNavigationBar(
+        unselectedItemColor: Colors.blue,
+        selectedItemColor: Color(0xFFF5CE0A),
+        backgroundColor: Color(0xFF2E303C),
+        currentIndex: currentIndex,
+        onTap: (index) {
           setState(() {
-            currentPageIndex = index;
+            currentIndex = index;
           });
         },
-        indicatorColor: Colors.amber,
-        selectedIndex: currentPageIndex,
-        destinations: const <Widget>[
-          NavigationDestination(
-            selectedIcon: Icon(Icons.home),
-            icon: Icon(Icons.home_outlined),
-            label: 'Home',
-          ),
-          NavigationDestination(
-            icon: Icon(Icons.calculate_outlined),
-            label: 'Basic_UI',
-          ),
-          NavigationDestination(
+        items: const [
+          BottomNavigationBarItem(
             icon: Icon(Icons.calculate),
-            label: 'Advance_UI',
+            label: "Basic",
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.calculate_outlined),
+            label: "Advanced",
           ),
         ],
       ),
